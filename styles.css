@@ -1,0 +1,135 @@
+/*styles.css*/
+main {
+      display: grid; /* This line sets the display to grid */
+      grid-template-areas:
+      "nav nav nav"   /* These 3 lines specify the specific area layout of your grid*/
+      "header header header"      /* The first row is all header area, the second is split NAV - ARTICLE - ASIDE */
+      "article article article"      /* The first row is all header area, the second is split NAV - ARTICLE - ASIDE */
+      "footer footer footer";  /* and the third row is all footer content.*/
+}
+header { grid-area: header; }
+
+article { grid-area: article; }
+
+nav { grid-area: nav; }
+
+aside { grid-area: aside; }
+
+footer { grid-area: footer; }
+
+body{
+  background-color: #FFEBCD;
+  margin-top: auto;
+  border-color: #AFEEEE;
+  padding-top: 35px;
+
+}
+a{
+  text-decoration-color: #32CD32;
+  /* text-shadow:2px 2px #AFEEEE; */
+  color: #0000FF;
+}
+
+/*NAVIGATION BAR TAKEN FROM W3 SCHOOLS: https://www.w3schools.com/howto/howto_js_topnav.asp */
+.Navigation_Bar {
+  background-color: #F39C12;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.Navigation_Bar a {
+  float: left;
+  color: #1F618D;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.Navigation_Bar a:hover {
+  background-color: #D3D3D3 ;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.Navigation_Bar a.active {
+  background-color: #1F618D;
+  color: white;
+}
+
+
+h1{
+  text-shadow: 4px 4px #D3D3D3;
+  text-align: center;
+}
+p.image{
+  text-align: center;
+}
+ul.index_list{
+  padding-bottom: 35px;
+}
+
+h3.contact_info{
+  padding-top: 50px;
+}
+
+.outer{
+  position:absolute;
+  top:0px;
+  right:0px;
+  overflow:hidden;
+}
+
+
+/* PRODUCTS PAGE */
+
+/* body.products_body{
+  background-color: #FFEBCD;
+  padding-top: 50px;
+} */
+table.products_table{
+  font-family: 'lato', sans-serif;
+  padding-top: 50px;
+  width: 100%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #D3D3D3;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+.msgboard{
+  font-family: 'lato', sans-serif;
+  padding-top: 50px;
+  width: 100%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #D3D3D3;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+caption.products_caption{
+  padding-bottom: 25px;
+  font-size: 40px;
+  text-shadow: 4px 4px #D3D3D3;
+  text-align: center;
+}
+
+p.ring_detail_img{
+  float: right;
+  opacity: 0.75;
+  filter: alpha(opacity=100);
+  position: sticky;
+  top: 0;
+}
+
+thead.products_thead{
+  height: 50px;
+}
+
+
+/*SIGNUP PAGE */

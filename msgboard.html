@@ -1,0 +1,59 @@
+
+<!-- A bare bones web page to start SY306 assignments with -->
+<!DOCTYPE html>
+<html lang="en">
+   <head class = "index_head">
+     <link rel="stylesheet" href="styles.css">
+      <title>Epstein Didn't Kill Himself</title>
+      <meta charset="UTF-8">
+   </head>
+   <body>
+     <nav>
+   <div class="Navigation_Bar">
+    <a href="signup.html">Signup</a>
+    <a href="login.html">Login</a>
+    <a href="msgboard.html"> Message Board </a>
+  </div>
+  </nav>
+ <h1>Message board</h1>
+ <main>
+ <form method="post" action="songPage.py" >
+ <table id="msgboard"><tbody><tr><th>SongID</th><th>Artist</th><th>Title</th><th>Votes</th></tr>
+ <tr><td>5</td><td>Bebe Rexha &amp; Florida Georgia Line</td><td>Meant To Be</td><td>0</td></tr>
+ <tr><td>11</td><td>Billy Joel</td><td>52nd Street</td><td>10000</td></tr>
+ <tr><td>12</td><td>Billy Joel</td><td>Innocent man</td><td>0</td></tr>
+ <tr><td>13</td><td>bob marley</td><td>Howdy</td><td>0</td></tr>
+ <tr><td>3</td><td>Bruno Mars &amp; Cardi B</td><td>Finesse</td><td>0</td></tr>
+ <tr><td>6</td><td>Camila Cabello Featuring Young Thug</td><td>Havana</td><td>0</td></tr>
+ <tr><td>1</td><td>Drake</td><td>God's Plan</td><td>0</td></tr>
+ <tr><td>2</td><td>Ed Sheeran</td><td>Perfect</td><td>0</td></tr>
+ <tr><td>10</td><td>Kendrick Lamar &amp; SZA</td><td>All The Stars</td><td>0</td></tr>
+ <tr><td>9</td><td>Migos</td><td>Stir Fry</td><td>0</td></tr>
+ <tr><td>14</td><td>null</td><td>null</td><td>0</td></tr>
+ <tr><td>15</td><td>null</td><td>null</td><td>0</td></tr>
+ <tr><td>4</td><td>Post Malone Featuring Ty Dolla $ign</td><td>Psycho</td><td>0</td></tr>
+ <tr><td>8</td><td>The Weeknd &amp; Kendrick Lamar</td><td>Pray For Me</td><td>0</td></tr>
+ <tr><td>7</td><td>Zedd, Maren Morris &amp; Grey</td><td>The Middle</td><td>0</td></tr>
+ </tbody></table>
+ <p>
+ <label>Artist: <input type="text" name="artist"></label><br>
+ <label>Title: <input type="text" name="title"></label><br>
+ <input type="submit" name="insert" value="Insert song">
+ </p>
+ </form>
+
+   <footer>
+      <!-- ***************************************************************
+         Below this point is text you should include on every SY306 page
+         *************************************************************** -->
+      <script src="http://courses.cyber.usna.edu/SY306/docs/htmlvalidate.js" ></script>
+</footer>
+      <!-- The JS link above creates a button you can click on to validate your page.
+      The background of the image will load green, yellow, or red if the HTML is valid,
+      has errors, or has warnings. It will load grey if unable to determine validation.
+      The time at which the page was last modified will also be displayed below the button -->
+
+
+  </main>
+   </body>
+</html>

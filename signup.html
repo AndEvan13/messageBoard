@@ -1,10 +1,9 @@
 <!-- http://midn.cs.usna.edu/~m215964/Lab06/process_signup_start.py -->
 <!-- A bare bones web page to start SY306 assignments with -->
 <!DOCTYPE html>
-<<<<<<< HEAD
 <html lang="en">
    <head>
-      <title>Login</title>
+      <title>SignUp</title>
       <meta charset="UTF-8">
       <link type="text/css" rel="stylesheet" href="styles.css">
    </head>
@@ -16,11 +15,14 @@
     <a href="msgboard.html"> Message Board </a>
   </div>
   </nav>
-   <h1>Login</h1>
+   <h1>Sign-Up</h1>
    <form name="signup_form" method="post" onsubmit= "return check_all()" action="http://midn.cs.usna.edu/~m215964/Project/process_signup_safe.py">
+       Name: <input id="name" type="text" name="name" placeholder="Enter your name" onsubmit="return check_text()" required><span id = "nameError"></span><br>
        Username: <input id="usrname" type="text" name="usrname" placeholder="Enter your username" onblur="return check_usrname()" onsubmit="return check_text()"><span id = "usrnameError"></span><br>
        Password: <input id="pwd" type="password" name="pwd" placeholder="Enter your password" onblur="return check_pwd()" onsubmit="return check_pwd()"><span id = "pwdError"></span><br>
-       <br><input type="submit"  value="Submit Form">
+       Re-Enter Password: <input id = "pwd2" type="password" name="pwd2" placeholder="Enter your password again please" onblur="return check_pwd()" onsubmit="return check_pwd()" ><span id = "pwd2Error"></span><br>
+       <br>
+       <input type="submit"  value="Submit Form">
        <input type="reset" value="Clear Form">
      </form>
 
@@ -83,25 +85,3 @@
 
    </body>
 </html>
-=======
-<html lang="">
-	<head>
-    <title> Message Board Login </title>
-		<meta charset="UTF-8">
-	</head>
-	<body>
-	<main>
-
-	</main>
-<!-- ***************************************************************
-Below this point is text you should include on every SY306 page
-*************************************************************** -->
-<script src="http://courses.cyber.usna.edu/SY306/docs/htmlvalidate.js" ></script>
-
-<!-- The JS link above creates a button you can click on to validate your page.
-The background of the image will load green, yellow, or red if the HTML is valid,
-has errors, or has warnings. It will load grey if unable to determine validation.
-The time at which the page was last modified will also be displayed below the button -->
-	</body>
-</html>
->>>>>>> 4c30e83b03e82cdc687920303d88d8c2b43e5cc6
