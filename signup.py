@@ -1,16 +1,21 @@
+#!/usr/bin/env python3
 import datetime
 import mysql.connector
 import cgi, re
 import cgitb; cgitb.enable()
+import config
 
 form = cgi.FieldStorage()
 
-cnx = mysql.connector.connect(user='m216618', database='m216618')
+cnx = mysql.connector.connect(user=config.USER,
+                            password = config.PASSWORD,
+                            host = config.HOST,
+                            database=config.DATABASE)
 cursor = cnx.cursor()
 
 print ("Content-Type: text/html")
 print ()
-print ('''\
+print ('''
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,15 +31,15 @@ name = form.getvalue("name")
 username = form.getvalue("usrname")
 password = form.getvalue("pwd")
 
-if name == "" or name == None:
+if (name == "") or (name == None):
     print("<p> Please enter in a name!</p>")
 else:
-    print("<h2> Thank you"+name"</h2>")
+    print("<h2> Thank you",name,"</h2>")
 
-if username == "" or username == None:
+if (username == "") or (username == None):
     print("<p> Please enter in a UserName </p>")
 
-if password == "" or password == None:
+if (password == "") or (password == None):
     print("<p> Please enter in a password!</p>")
 
 print ('</body></html>')
