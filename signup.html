@@ -1,9 +1,7 @@
-<!-- http://midn.cs.usna.edu/~m215964/Lab06/process_signup_start.py -->
-<!-- A bare bones web page to start SY306 assignments with -->
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <title>SignUp</title>
+      <title>Sign-Up</title>
       <meta charset="UTF-8">
       <link type="text/css" rel="stylesheet" href="styles.css">
    </head>
@@ -12,15 +10,19 @@
    <div class="Navigation_Bar">
     <a href="signup.html">Signup</a>
     <a href="login.html">Login</a>
-    <a href="msgboard.py"> Message Board </a>
+    <a href="msgboard.html"> Message Board </a>
   </div>
   </nav>
    <h1>Sign-Up</h1>
-   <form name="signup_form" method="post" onsubmit= "return check_all()" action="http://midn.cyber.usna.edu/~m212748/Project1/signup.py">
-       Name: <input id="name" type="text" name="name" placeholder="Enter your name" onsubmit="return check_text()" required><span id = "nameError"></span><br>
-       Username: <input id="usrname" type="text" name="usrname" placeholder="Enter your username" onblur="return check_usrname()" onsubmit="return check_text()"><span id = "usrnameError"></span><br>
-       Password: <input id="pwd" type="password" name="pwd" placeholder="Enter your password" onblur="return check_pwd()" onsubmit="return check_pwd()"><span id = "pwdError"></span><br>
-       Re-Enter Password: <input id = "pwd2" type="password" name="pwd2" placeholder="Enter your password again please" onblur="return check_pwd()" onsubmit="return check_pwd()" ><span id = "pwd2Error"></span><br>
+   <form name="signup" method="post" onsubmit= "return check_all()" action="http://midn.cyber.usna.edu/~m212748/Project1/signup.py">
+
+       Name: <input id="name" type="text" name="name" placeholder="Enter your name" onblur="return check_name()" onsubmit="return check_name()" required><span id = "nameError"></span><br>
+
+       Username: <input id="usrname" type="text" name="usrname" placeholder="Enter your username" onblur="return check_usrname()" onsubmit="return check_usrname()" required><span id = "usrnameError"></span><br>
+
+       Password: <input id="pwd" type="password" name="pwd" placeholder="Enter your password" onblur="return check_pwd()" onsubmit="return check_pwd()" required><span id = "pwdError"></span><br>
+
+       Re-Enter Password: <input id = "pwd2" type="password" name="pwd2" placeholder="Enter your password again please" onblur="return check_pwd()" onsubmit="return check_pwd()" required ><span id = "pwd2Error"></span><br>
        <br>
        <input type="submit"  value="Submit Form">
        <input type="reset" value="Clear Form">
@@ -41,7 +43,20 @@
       return true;
     }
   }
-////////////////////////////////////////////////////////////////////////
+  function check_name(){ //checks username input
+    var name_val=document.getElementById("name").value;
+    var nameError=document.getElementById("nameError");
+    if (name_val==""){ //if the field is empty:
+      nameError.style.color = "red";
+      nameError.innerHTML = "*Please enter a Name";
+      return false;
+    }
+    else{
+      nameError.innerHTML = "";
+      return true;
+    }
+  }
+
   function check_pwd(){ //validates password input
     // var pwd_pattern = new RegExp(/\w{6,}/);
     var pwd_pattern = new RegExp(/\w{6,}[0-9]{1,}/);
@@ -59,6 +74,7 @@
     if (pwd_val != pwd2_val){
       pwd2Error.style.color = "red";
       pwd2Error.innerHTML = "*Your password must match";
+      return false
     }
     else{
       pwdError.innerHTML = "";
@@ -66,6 +82,21 @@
       return true;
      }
    }
+
+   function check_all(){ // attempt to call all the functions before submission
+   // var t4 = replace_bads();
+   var t1 = check_name();
+   var t2 = check_usrname();
+   var t3 = check_pwd();
+   // console.log((t1 & t2 & t3))
+   if ((t1 || t2 || t3) != true ){
+     alert("Please double check your inputs")
+     return false;
+   }
+   else{
+     return true
+   }
+ }
   /////////////////////////////////////////////////////////////
 
   </script>
