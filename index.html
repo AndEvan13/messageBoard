@@ -1,77 +1,48 @@
-
-<!-- A bare bones web page to start SY306 assignments with -->
+<!--Project 01 Due: 4/22/2020  index.html-->
 <!DOCTYPE html>
 <html lang="en">
    <head class = "index_head">
+      <!--Creates A Logo On Tab-->
+      <!--Cite Format Logo: http://carlos-r-mendoza.github.io/how-to-add-a-browser-tab-icon-to-your-website-->
+     <link rel="shortcut icon" href="favicon.ico">
      <link rel="stylesheet" href="styles.css">
-      <title>Epstein Didn't Kill Himself</title>
+      <title>Home Page</title>
       <meta charset="UTF-8">
    </head>
    <body class = "index_body">
      <main>
+       <!--Tabs On Our Navigation Bar To Connect Our Site-->
        <nav>
      <div class="Navigation_Bar">
+      <a href="index.html">Home Page</a>
       <a href="signup.html">Signup</a>
       <a href="login.html">Login</a>
       <a href="msgboard.html"> Message Board </a>
+      <a href="https://www.instagram.com/" style="float:right"><img src="Instagram2.png" width="15px" alt="Insta"></a>
+      <a href="https://www.facebook.com/" style="float:right"><img src="Facebook2.png" width="15px" alt="FaceB"></a>
+      <a href="https://twitter.com/explore" style="float:right"><img src="Twitter3.png" width="15px" alt="Tweet"></a>
+     <!--Instagram Photo From: https://instagram-brand.com/wp-content/themes/ig-branding/assets/images/ig-logo-email.png-->
+     <!--Facebook Photo From: https://1000logos.net/wp-content/uploads/2016/11/Facebook-Logo.png-->
+     <!--Twitter Photo From: https://seeklogo.com/images/T/twitter-icon-square-logo-108D17D373-seeklogo.com.png-->
     </div>
   </nav>
 <!--Image and Header/Welcome Section-->
-   <!-- Image from: https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQG38BFFSGdusWd5EAXM0fEkqgSZ2tZ2ijRqZfbxmywRexZUDFr"-->
       <header><h1 class = "index_head1"> Welcome to our Message Board</h1>
-      <p class="image">   <img src="data:image/jpeg;base64,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" alt="Msg Board"> </p>
-        <div id="outer">
-    </div>
+      <p class="image">   <img img src="convo2.png" width="400px" alt="convo"> </p>
+      <!-- Image from: https://img.favpng.com/11/24/19/internet-forum-discussion-group-computer-icons-clip-art-png-favpng-c5r0MMu2ZjpHgCGK7Re3GX9nZ.jpg"-->
     </header>
-<!--Goods and Services Section-->
+<!--Welcome Page-->
     <article>
-      <!-- <script>
-        function greeting(){
-          var today = new Date();
-          var minutes = today.getMinutes()
-          if (minutes % 2 == 0){
-            greeting="Welcome!";
-          }
-          else{
-            greeting="Go Away!";
-          }
-          return greeting;
-        }
-        msg = greeting()
-        document.write(msg)
-
-        </script> -->
         <br><br>
+        <div class="Welcome">
         <h2>
-       We have the best message board</h2>
-        <!-- <ul class ="index_list">
-          <li>Swords</li>
-          <li>Rings</li>
-          <li>Elven Language Classes</li>
-          <li>Trips to New Zealand (where Lord of the Rings was filmed)</li>
-        </ul> -->
-      <!-- <p class = "dictionary"> Get your
-        <a href="https://www.amazon.com/Dictionary-Tolkien-David-Day/dp/1607109069/ref=asc_df_1607109069/?tag=hyprod-20&linkCode=df0&hvadid=312050258636&hvpos=1o1&hvnetw=g&hvrand=3707573789850575200&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9007937&hvtargid=pla-437848901174&psc=1&tag=&ref=&adgrpid=61316181039&hvpone=&hvptwo=&hvadid=312050258636&hvpos=1o1&hvnetw=g&hvrand=3707573789850575200&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9007937&hvtargid=pla-437848901174"> Dictionary of Tolkein  </a>
-        today!
-      </p>
-      <p class = "product_link">Check out some of our <a href="products.html"> other products </a></p>
-      <p class = "signup_link">Also, <a href="signup.html"> sign up </a> for our Website to get exclusive LOTR deals</p>
-      <br><br>
-      <p class = "misleading_link">If you would like to navigate to Google, we have a convenient link for you. Just shows how much we care:  <a href="https://www.youtube.com/watch?v=L_jWHffIx5E"> Google </a> </p> -->
-
-
-
-
-<!-- contact info-->
- <!-- <h3 class = "contact_info"> Feedback and Contact Info</h3>
-      <p class = "contact_info">
-       For more information please <a href="mailto:m215964@gmail.com"> contact us </a>
-       </p> -->
+       A Community Where We Like To Talk About What Is On Your Mind</h2>
+    </div>
+    <p></p>
+      <!--Logo Placed At Bottom Of Page-->
+      <!--Image Modified From: https://p7.hiclipart.com/preview/705/569/197/logo-background-checkered.jpg-->
+    <p style="text-align:center;"><img src="Logo2.png" width=200px alt="Logo" class="center"></p>
      </article>
-
-
-
-
    <footer>
       <!-- ***************************************************************
          Below this point is text you should include on every SY306 page
@@ -82,8 +53,6 @@
       The background of the image will load green, yellow, or red if the HTML is valid,
       has errors, or has warnings. It will load grey if unable to determine validation.
       The time at which the page was last modified will also be displayed below the button -->
-
-
   </main>
    </body>
 </html>

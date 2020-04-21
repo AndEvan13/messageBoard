@@ -1,107 +1,64 @@
-<!-- http://midn.cs.usna.edu/~m215964/Lab06/process_signup_start.py -->
-<!-- A bare bones web page to start SY306 assignments with -->
+<!--Project 01 Due: 4/22/2020  login.html-->
 <!DOCTYPE html>
-<<<<<<< HEAD
 <html lang="en">
    <head>
+      <!--Creates A Logo On Tab-->
+      <!--Cite Format Logo: http://carlos-r-mendoza.github.io/how-to-add-a-browser-tab-icon-to-your-website-->
+     <link rel="shortcut icon" href="favicon.ico">
       <title>Login</title>
       <meta charset="UTF-8">
       <link type="text/css" rel="stylesheet" href="styles.css">
    </head>
    <body>
+     <!--Tabs On Our Navigation Bar To Connect Our Site-->
      <nav>
    <div class="Navigation_Bar">
+    <a href="index.html">Home Page</a>
     <a href="signup.html">Signup</a>
     <a href="login.html">Login</a>
     <a href="msgboard.html"> Message Board </a>
+    <a href="https://www.instagram.com/" style="float:right"><img src="Instagram2.png" width="15px" alt="Insta"></a>
+    <a href="https://www.facebook.com/" style="float:right"><img src="Facebook2.png" width="15px" alt="FaceB"></a>
+    <a href="https://twitter.com/explore" style="float:right"><img src="Twitter3.png" width="15px" alt="Tweet"></a>
   </div>
+   <!--Instagram Photo From: https://instagram-brand.com/wp-content/themes/ig-branding/assets/images/ig-logo-email.png-->
+   <!--Facebook Photo From: https://1000logos.net/wp-content/uploads/2016/11/Facebook-Logo.png-->
+   <!--Twitter Photo From: https://seeklogo.com/images/T/twitter-icon-square-logo-108D17D373-seeklogo.com.png-->
   </nav>
-   <h1>Login</h1>
-   <form name="signup_form" method="post" onsubmit= "return check_all()" action="http://midn.cs.usna.edu/~m215964/Project/process_signup_safe.py">
-       Username: <input id="usrname" type="text" name="usrname" placeholder="Enter your username" onblur="return check_usrname()" onsubmit="return check_text()"><span id = "usrnameError"></span><br>
-       Password: <input id="pwd" type="password" name="pwd" placeholder="Enter your password" onblur="return check_pwd()" onsubmit="return check_pwd()"><span id = "pwdError"></span><br>
-       <br><input type="submit"  value="Submit Form">
-       <input type="reset" value="Clear Form">
-     </form>
-
-  <script>
-  // This function uses REGEX to make sure the password is within the described parameters - at least 6 characters and one number
-  function check_usrname(){ //checks username input
-    var usrname_val=document.getElementById("usrname").value;
-    var usrnameError=document.getElementById("usrnameError");
-    if (usrname_val==""){ //if the field is empty:
-      usrnameError.style.color = "red";
-      usrnameError.innerHTML = "*Please enter a username";
-      return false;
-    }
-    else{
-      usrnameError.innerHTML = "";
-      return true;
-    }
-  }
-////////////////////////////////////////////////////////////////////////
-  function check_pwd(){ //validates password input
-    // var pwd_pattern = new RegExp(/\w{6,}/);
-    var pwd_pattern = new RegExp(/\w{6,}[0-9]{1,}/);
-    var pwd_val = document.getElementById("pwd").value;
-    var pwd2_val = document.getElementById("pwd2").value;
-    var test = pwd_pattern.test(pwd_val);
-    var pwdError=document.getElementById("pwdError");
-    var pwd2Error=document.getElementById("pwd2Error");
-    // document.write(test)
-    if (test == false){ //if it does not match the regex:
-      pwdError.style.color = "red";
-      pwdError.innerHTML = "*Your password must be at least six characters and one number";
-      return false;
-    }
-    if (pwd_val != pwd2_val){
-      pwd2Error.style.color = "red";
-      pwd2Error.innerHTML = "*Your password must match";
-    }
-    else{
-      pwdError.innerHTML = "";
-      pwd2Error.innerHTML = "";
-      return true;
-     }
-   }
-/////////////////////////////////////////////////////////////
-
-  </script>
-
-
+   <header><h1>Login</h1></header>
+   <!--Portion Where User Log Into Our Site-->
+   <div class="Form1">
+      <form name="signup_form" method="post" onsubmit= "return check_all()" action="http://midn.cs.usna.edu/~m215964/Project/process_signup_safe.py">
+          Username: <input id="usrname" type="text" name="usrname" placeholder="Enter your username" style="float:center" onblur="return check_usrname()" onsubmit="return check_usrname()" required><div id = "usrnameError"></div><br>
+          Password: <input id="pwd" type="password" name="pwd" placeholder="Enter your password" style="float:center" onblur="return check_pwd()" onsubmit="return check_pwd()" required><div id = "pwdError"></div><br>
+          <br><input type="submit"  style="background-color: #faf4c3;color: black;border: 1px solid black;" value="Submit Form" onclick="checking">
+          <!--Learned How To Format Buttons At https://www.w3schools.com/css/css_form.asp -->
+          <input type="reset" style="background-color: #faf4c3;color: black;border: 1px solid black;" value="Clear Form">
+        </form>
+     </div>
+     <!--Image For Page-->
+     <!--Image From: https://cdn1.iconfinder.com/data/icons/hawcons/32/698843-icon-116-lock-open-512.png-->
+     <div class="Log-In">
+     <p><img src="Log_In7.png" width="400px" alt="Log-In"></p>
+     </div>
+     <!--Message To Ask User To Enter Their Credentials-->
+     <div class="Welcome">
+     <h2>Please Login With Your Credentials</h2>
+  </div>
+     <p></p>
+     <!--Logo Placed At Bottom Of Page-->
+     <!--Image Modified From: https://p7.hiclipart.com/preview/705/569/197/logo-background-checkered.jpg-->
+   <p style="text-align:center;"><img src="Logo2.png" width=200px alt="Logo" class="center"></p>
+   <footer>
       <!-- ***************************************************************
          Below this point is text you should include on every SY306 page
          *************************************************************** -->
       <script src="http://courses.cyber.usna.edu/SY306/docs/htmlvalidate.js" ></script>
+   </footer>
 
       <!-- The JS link above creates a button you can click on to validate your page.
       The background of the image will load green, yellow, or red if the HTML is valid,
       has errors, or has warnings. It will load grey if unable to determine validation.
       The time at which the page was last modified will also be displayed below the button -->
-
-
-
    </body>
 </html>
-=======
-<html lang="">
-	<head>
-    <title> Board Login </title>
-		<meta charset="UTF-8">
-	</head>
-	<body>
-	<main>
-
-	</main>
-<!-- ***************************************************************
-Below this point is text you should include on every SY306 page
-*************************************************************** -->
-<script src="http://courses.cyber.usna.edu/SY306/docs/htmlvalidate.js" ></script>
-
-<!-- The JS link above creates a button you can click on to validate your page.
-The background of the image will load green, yellow, or red if the HTML is valid,
-has errors, or has warnings. It will load grey if unable to determine validation.
-The time at which the page was last modified will also be displayed below the button -->
-	</body>
-</html>
->>>>>>> 4c30e83b03e82cdc687920303d88d8c2b43e5cc6
