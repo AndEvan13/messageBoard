@@ -51,7 +51,7 @@ class msg:
 
                 nbRows = 0
 
-                table = "<table><tr><th>MessageID</th><th>User</th><th>Message</th></tr>\n"
+                table = "<table><tr><th>User</th><th>User</th><th>Message</th></tr>\n"
                 for (MessageID, user, Message) in cursor:
                     table += "<tr><td>" + str(MessageID) + "</td><td>" + user + "</td><td>" + Message + "</td></tr>\n"
                     nbRows += 1

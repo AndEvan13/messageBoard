@@ -44,9 +44,9 @@ quit()
 cursor = cnx.cursor()
 
 params = cgi.FieldStorage()
-insertButton = params.getvalue("insert")
+sendButton = params.getvalue("send")
 
-if insertButton:
+if sendButton:
     #need to insert code right how that stores the userName of the person accessing the messageboard as a variable
     message = params.getvalue("message")
 
@@ -125,11 +125,10 @@ if 'HTTP_COOKIE' in os.environ: #checks to see if there is a cookie present in t
         print("<h2>No Messages Present</h2>")
 
 
-    print('''<table id="msgboard"><tbody><tr><th>Username</th><th>Message</th></tr>
-    </tbody></table>
+    print('''\
     <p>
-    <label>Message: <input type="textbox" name="message"></label><br>
-    <input type="submit" name="insert" value="Send Message">
+    <label>Message: <input type = "text" name = "message"></label><br>
+    <input type = "submit" name="send" value="Send Message">
     </p>
     </form><br><br>
     <a href="logout.py">Log Out</a>
