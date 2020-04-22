@@ -10,7 +10,6 @@ from mysql.connnector import errorcode
 
 import config
 
-
 try:
     '''cnx = mysql.connector.connect(user='theuser', password = 'thepassword', host = 'thehostserver', database='thedatabase')'''
     cnx = mysql.connector.connect(user=config.USER, password = config.PASSWORD, host = config.HOST, database=config.DATABASE)
