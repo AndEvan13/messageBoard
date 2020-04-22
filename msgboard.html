@@ -42,12 +42,12 @@
  <div class="Form3">
     <form method="post" action="msgboard.py" style="margin-left:auto;margin-right:auto; padding: 40px 570px 40px">
     <table id="msgboard" style="border-collapse: collapse;"><tbody><tr><th>MessageID</th><th>User</th><th>Message</th></tr>
-      <tr><th>182</th><th> TestAdmin</th><th>Test Message</th>
+      <tr><th>182</th><th> TestAdmin</th><th>Test Message</th></tr>
     </tbody></table>
     <p>
     <br>
     <!--Learned How To Format This Text Box At https://www.w3schools.com/css/css_form.asp -->
-    <label>Message: <input type="textbox" name="message" style="background-color: #bcf5e7;color: black;" placeholder="Message goes here..."></label><br>
+    <label>Message:</label> <textarea id="sendmessage" rows="4" cols="50" style="background-color: #bcf5e7;color: black;" placeholder="Message goes here..."></textarea><br>
     <br>
     <input type="submit" name="send" style="background-color: #faf4c3;color: black;border: 1px solid black;" value="Send Message">
     </p>
