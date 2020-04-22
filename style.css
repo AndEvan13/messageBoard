@@ -1,0 +1,145 @@
+/*Project 01    Created: 4/16/2020     Due: 4/22/2020  styles.css*/
+/*styles.css*/
+/*Created By Paul Schartung & Modified By Megan Reardon*/
+/*This file creates the CSS for our website which helps make everything look professional and appealing to the user*/
+
+main {
+      display: grid; /* This line sets the display to grid */
+      grid-template-areas:
+      "nav nav nav"   /* These 3 lines specify the specific area layout of your grid*/
+      "header header header"      /* The first row is all header area, the second is split NAV - ARTICLE - ASIDE */
+      "article article article"      /* The first row is all header area, the second is split NAV - ARTICLE - ASIDE */
+      "footer footer footer";  /* and the third row is all footer content.*/
+}
+header { grid-area: header;
+      text-decoration: underline;}
+title{
+   text-decoration: underline;
+}
+article { grid-area: article;}
+
+nav { grid-area: nav; }
+
+aside { grid-area: aside; }
+
+footer { grid-area: footer; }
+/*Modified By Megan Reardon*/
+body{
+  background-color: #FFEBCD;
+  margin-top: auto;
+  border-color: #AFEEEE;
+  padding-top: 35px;
+  text-align: center;
+}
+/*Modified By Megan Reardon*/
+table{
+   border: 3px dotted black;
+   text-align:Center;
+   margin: auto;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   padding-right: 10px;
+   padding-left: 10px;
+   background-image: url(https://ak3.picdn.net/shutterstock/videos/9485303/thumb/1.jpg);
+}
+/*Background Image For Table Was Found Online On The URL Above*/
+/*Modified By Megan Reardon*/
+a{
+  text-decoration-color: #32CD32;
+  /* text-shadow:2px 2px #AFEEEE; */
+  background-image: #0000FF;
+}
+/*Modified By Megan Reardon*/
+/*Creates Background For & Sign-Up*/
+div.Form1{
+   height: 130px;
+   width: 300px;
+   background-image: url(https://ak3.picdn.net/shutterstock/videos/9485303/thumb/1.jpg);
+   float: center;
+}
+/*Modified By Megan Reardon*/
+div.Form2{
+   height: 210px;
+   width: 370px;
+   background-image: url(https://ak3.picdn.net/shutterstock/videos/9485303/thumb/1.jpg);
+   float: center;
+}
+/*Modified By Megan Reardon*/
+/*Background Image For Forms Was Found Online On The URLs Above*/
+div.Form3{
+   text-align: center;
+}
+/*Modified By Megan Reardon*/
+div.Logo_MB{
+   margin-right: -1250px;
+}
+/*Modified By Megan Reardon*/
+/*Makes The Text Align For Center Page*/
+div.Welcome{
+   text-align:Center;
+}
+/*Modified By Megan Reardon*/
+/*Adjusts Image For Message Board Page*/
+div.Message_Board{
+   text-align:center;
+   margin-top: -230px;
+   margin-bottom: 50px;
+   margin-right: 90px;
+   margin-left: 80px;
+}
+/*Modified By Megan Reardon*/
+/*Makes The Image Display For Log-In Page*/
+div.Log-In{
+   text-align: Center;
+   margin-top: -170px;
+   margin-bottom: 50px;
+   margin-right: 120px;
+   margin-left: 80px;
+}
+
+/*NAVIGATION BAR TAKEN FROM W3 SCHOOLS: https://www.w3schools.com/howto/howto_js_topnav.asp */
+.Navigation_Bar {
+  font-style: underline;
+  background-color: #F39C12;
+  overflow: hidden;
+}
+/* Style the links inside the navigation bar */
+.Navigation_Bar a {
+  float: left;
+  color: #1F618D;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.Navigation_Bar a:hover {
+  background-color: #bcf5e7 ;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.Navigation_Bar a.active {
+  background-color: #1F618D;
+  color: white;
+}
+
+h1{
+  text-shadow: 4px 4px #D3D3D3;
+  text-align: center;
+}
+p.image{
+   text-align: Center;
+}
+.msgboard{
+  font-family: 'lato', sans-serif;
+  padding-top: 50px;
+  width: 100%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #D3D3D3;
+  text-align: center;
+  border-collapse: collapse;
+}

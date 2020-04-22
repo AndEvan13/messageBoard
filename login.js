@@ -1,10 +1,13 @@
-//Project 01 Due: 4/22/2020  login.js
+//Project 01     Created: 4/16/2020     Due: 4/22/2020  login.js
+//Created By Paul Schartung & Modified By Megan Reardon
+//This file consists of the functions used in login.html which sets parameters for only people with proper credientials be able to access the message board
 
-// This function uses REGEX to make sure the password is within the described parameters - at least 6 characters and one number
+// This function uses REGEX to make sure the username entered has the proper credentials within the website's databaase
+//Modified by Megan Reardon For XSS
    function check_usrname(){ //checks username input
      var usrname_val=document.getElementById("usrname").value;
      var usrnameError=document.getElementById("usrnameError");
-     //var usrname_val = str.replace(/</gi, "&lt"); // Prevents Cross-Site Scriptng
+     var usrname_val = str.replace(/</gi, "&lt"); // Prevents Cross-Site Scriptng
      if (usrname_val==""){ //if the field is empty:
        usrnameError.style.color = "red";
        usrnameError.innerHTML = "*Please enter a username";
@@ -15,11 +18,13 @@
        return true;
      }
    ////////////////////////////////////////////////////////////////////////
+// This function uses REGEX to make sure the password entered matches the one in the website's database
+//Modified by Megan Reardon To Be Only 1 Password Check & XSS
    function check_pwd(){ //validates password input
      // var pwd_pattern = new RegExp(/\w{6,}/);
      var pwd_pattern = new RegExp(/\w{6,}[0-9]{1,}/);
      var pwd_val = document.getElementById("pwd").value;
-     //var pwd2_val = document.getElementById("pwd2").value;
+     var pwd_val = document.getElementById("pwd2").value;
      var test = pwd_pattern.test(pwd_val);
      var pwdError=document.getElementById("pwdError");
      //var pwd2Error=document.getElementById("pwd2Error");
@@ -35,13 +40,8 @@
        pwdError.innerHTML = "*Your password must be at least six characters and one number";
        return false;
      }
-     /*if (pwd_val != pwd2_val){
-        pwd2Error.style.color = "red";
-        pwd2Error.innerHTML = "*Your password must match";
-     }*/
      else{
        pwdError.innerHTML = "";
-       //pwd2Error.innerHTML = "";
        return true;
       }
     }
