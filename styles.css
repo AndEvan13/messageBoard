@@ -1,4 +1,4 @@
-/*Project 01 Due: 4/22/2020  styles.css*/
+*Project 01 Due: 4/22/2020  styles.css*/
 /*styles.css*/
 main {
       display: grid; /* This line sets the display to grid */
@@ -8,7 +8,7 @@ main {
       "article article article"      /* The first row is all header area, the second is split NAV - ARTICLE - ASIDE */
       "footer footer footer";  /* and the third row is all footer content.*/
 }
-header { grid-area: header; 
+header { grid-area: header;
       text-decoration: underline;}
 title{
    text-decoration: underline;
@@ -51,11 +51,13 @@ div.Form1{
    height: 130px;
    width: 300px;
    background-image: url(https://ak3.picdn.net/shutterstock/videos/9485303/thumb/1.jpg);
+   float: center;
 }
 div.Form2{
    height: 210px;
    width: 370px;
    background-image: url(https://ak3.picdn.net/shutterstock/videos/9485303/thumb/1.jpg);
+   float: center;
 }
 /*Background Image For Forms Was Found Online On The URLs Above*/
 div.Form3{
