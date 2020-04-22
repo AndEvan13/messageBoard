@@ -23,7 +23,7 @@
      var test = pwd_pattern.test(pwd_val);
      var pwdError=document.getElementById("pwdError");
      //var pwd2Error=document.getElementById("pwd2Error");
-     //var pwd2_val = str.replace(/</gi. "&lt"); //Prevents Cross-Site Scripting
+     //var pwd_val = str.replace(/</gi. "&lt"); //Prevents Cross-Site Scripting
      // document.write(test)
      if (pwd_val==""){ //if the field is empty:
        pwdError.style.color = "red";
