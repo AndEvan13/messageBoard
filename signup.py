@@ -57,7 +57,7 @@ print ("""
 <head>
 <meta charset = "utf-8">
 <title>Sign-up Results</title>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 """)
@@ -84,7 +84,7 @@ admin = "0"
 x = 0
 
 pas = str(password)
-passCheck1 = re.search(r'w{6,}[0-9]{1,}', pas)
+passCheck1 = re.search(r'^(?=.*?[0-9]).{6,}$', pas)
 passCheck2 = bool(passCheck1)
 
 if (name == "") or (name == None):
