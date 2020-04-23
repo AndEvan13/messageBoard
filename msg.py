@@ -36,14 +36,14 @@ class msg:
             print('</p>')
             print('</body></html>')
 
-            nbRowsInserted = cursor.rowcount
-            MessageID = cursor.lastrowid
+        nbRowsInserted = cursor.rowcount
+        MessageID = cursor.lastrowid
 
-            if nbRowsInserted > 0:
+        if nbRowsInserted > 0:
 
-                return 1
-            else:
-                return 0
+            return 1
+        else:
+            return 0
 
 
     def printMessage(cursor):
