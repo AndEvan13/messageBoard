@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# Created by MIDN Hichue 4/20/20 and Modified by MIDN Hichue 4/22/20
+# This is used for gaterhing infromation from the users, then sending their data to the SQL database.
+
 #Everything we need to connnect to the database
 import mysql.connector
 from mysql.connector import errorcode
@@ -78,7 +81,6 @@ password = cgi.escape(passwordOrig)
 password2Orig = form.getvalue("pwd2")
 password2 = cgi.escape(password2Orig)
 
-admin = "0"
 
 #Re-error checking
 x = 0
@@ -111,20 +113,25 @@ if (password != password2):
 #Hashing the password
 hashPass1 = hashlib.sha256(password.encode())
 hashPass = str(hashPass1)
+#Columns not set at login
+admin = "0"
+sessionID = "empty"
+token = "empty"
 #Prevents SQL injections
-query = "Insert into Users Values (%s,%s,%s,%s)"
+
+query = "Insert into Users Values (%s,%s,%s,%s,%s,%s)"
 try:
-    cursor.execute(query,(name,username,hashPass,admin))
+    cursor.execute(query,(name,username,hashPass,admin,sessionID,token))
 except mysql.connector.IntegrityError as err:
     print("<h1> Sorry that username is already taken! Please try another!")
-    print("<a href='http://midn.cyber.usna.edu/~m212748/Project1/signup.html'>")
+    print("<a href='http://midn.cyber.usna.edu/~m212748/Project1/messageBoard/signup.html'>")
     print("<br> Sign-Up! </a>")
     x = 1
 
 if (x == 0):
-    print("<h1> Thank you",name,"for signing up for Let's talk about it!<br><br>")
-    print("<h1> Please click the link below to log-in and begin messaging!")
-    print("<a href='http://midn.cyber.usna.edu/~m212748/Project1/login.html'>")
+    print("<h2> Thank you",name,"for signing up for Let's talk about it!<br><br>")
+    print("<h2> Please click the link below to log-in and begin messaging!")
+    print("<a href='http://midn.cyber.usna.edu/~m212748/Project1/messageBoard/login.html'>")
     print("<br> Log-In!</a>")
 
 print ('</body></html>')
