@@ -11,6 +11,7 @@
       <title>SignUp</title>
       <meta charset="UTF-8">
       <link type="text/css" rel="stylesheet" href="style.css">
+      <script src="signup.js"></script>
    </head>
    <body>
       <!--Tabs On Our Navigation Bar To Connect Our Site-->
@@ -33,7 +34,7 @@
    <header><h1>Sign-Up</h1></header>
    <!--Portion Where User Signs Up To Become A User-->
    <div class="Form2">
-      <form name="signup_form" method="post" onsubmit= "return check_all()" action="http://midn.cs.usna.edu/~m215964/Project/process_signup_safe.py">
+      <form name="signup_form" method="post" onsubmit= "return check_all()" action="http://midn.cyber.usna.edu/~m212748/Project1/messageBoard/signup.py">
           Name: <input id="name" type="text" name="name" placeholder="Enter your name" onblur="return check_name()" onsubmit="return check_name()" required><div id = "nameError"></div><br>
           Username: <input id="usrname" type="text" name="usrname" placeholder="Enter your username"  onblur="return check_usrname()" onsubmit="return check_usrname()" required><div id = "usrnameError"></div><br>
           Password: <input id="pwd" type="password" name="pwd" placeholder="Enter your password"  onblur="return check_pwd()" onsubmit="return check_pwd()" required><div id = "pwdError"></div><br>
