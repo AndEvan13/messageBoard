@@ -33,7 +33,11 @@
    <header><h1>Login</h1></header>
    <!--Portion Where User Log Into Our Site-->
    <div class="Form1">
+<<<<<<< HEAD
+      <form name="signup_form" method="post" onsubmit= "return check_all()" action="http://midn.cyber.usna.edu/~m216618/messageBoard/login.py">
+=======
       <form name="signup_form" method="post" onsubmit= "return check_all()" action="login.py">
+>>>>>>> f29fef2f8e9523e562c3fd84ff65c0723d580fba
           Username: <input id="usrname" type="text" name="usrname" placeholder="Enter your username"  onblur="return check_usrname()" onsubmit="return check_usrname()" required><div id = "usrnameError"></div><br>
           Password: <input id="pwd" type="password" name="pwd" placeholder="Enter your password"  onblur="return check_pwd()" onsubmit="return check_pwd()" required><div id = "pwdError"></div><br>
           <br><input type="submit"  style="background-color: #faf4c3;color: black;border: 1px solid black;" value="Submit Form" onclick="checking">

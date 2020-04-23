@@ -10,6 +10,8 @@ import config
 import hashlib, time, os, shelve
 
 
+
+
 # import cgitb
 # cgitb.enable()    # enable CGI traceback module
 
@@ -181,7 +183,7 @@ msg='''Content-Type: text/html\n
 <h1>Welcome {user}!</h1>
 <br>
 <h2> You may now access the Message Board </h2>
-<h3> You can click this link to get there: <a href="msgboard.py">Message Board</a></h3>
+<h3> You can click this link to get there: <a href="http://midn.cyber.usna.edu/~m216618/messageBoard/msgboard.py">Message Board</a></h3>
 <img src="https://c8.alamy.com/comp/MBR0G5/cartoon-of-businessman-holding-big-hand-rubber-approved-stamp-MBR0G5.jpg" alt="approved">
 '''
 
