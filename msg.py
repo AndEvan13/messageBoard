@@ -1,4 +1,4 @@
-#!usr/bin/python3
+#!/usr/bin/python3
 
 import mysql.connector
 
@@ -39,25 +39,25 @@ class msg:
             else:
                 return 0
 
-            def printMessage(cursor):
-                query = "SELECT MessageID, userName, Message FROM Messages"
-                try:
-                    cursor.execute(query)
-                except mysql.connector.Error as err:
-                    print('<p style = "color:red">')
-                    print(err)
-                    print(" for statement" + cursor.statement )
-                    print('</p>')
+    def printMessage(cursor):
+        query = "SELECT MessageID, userName, Message FROM Messages"
+        try:
+            cursor.execute(query)
+        except mysql.connector.Error as err:
+            print('<p style = "color:red">')
+            print(err)
+            print(" for statement" + cursor.statement )
+            print('</p>')
 
-                nbRows = 0
+        nbRows = 0
 
-                table = "<table><tr><th>MessageID</th><th>User</th><th>Message</th></tr>\n"
-                for (MessageID, user, Message) in cursor:
-                    table += "<tr><td>" + str(MessageID) + "</td><td>" + user + "</td><td>" + Message + "</td></tr>\n"
-                    nbRows += 1
-                table += "</table>"
+        table = "<table><tr><th>User</th><th>User</th><th>Message</th></tr>\n"
+        for (MessageID, user, Message) in cursor:
+            table += "<tr><td>" + str(MessageID) + "</td><td>" + user + "</td><td>" + Message + "</td></tr>\n"
+            nbRows += 1
+        table += "</table>"
 
-                if nbRows > 0:
-                    return table
-                else:
-                    return ""
+        if nbRows > 0:
+            return table
+        else:
+            return ""
