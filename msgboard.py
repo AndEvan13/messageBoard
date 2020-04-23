@@ -1,14 +1,14 @@
- #!/usr/bin/env python3
+#!/usr/bin/env python3
 
 import cgi,cgitb    #import python cgi  for traceback
 from msg import msg
+import config
+import os
 
 cgitb.enable()
 
 import mysql.connector
-from mysql.connnector import errorcode
-
-import config
+from mysql.connector import errorcode
 
 try:
     '''cnx = mysql.connector.connect(user='theuser', password = 'thepassword', host = 'thehostserver', database='thedatabase')'''
@@ -18,7 +18,7 @@ try:
 except mysql.connector.Error as err:
     print("Content-type: text/html")
     print()
-    print("""\
+    print("""
     <!DOCTYPE html>
     <html>
     <head>
@@ -32,14 +32,14 @@ except mysql.connector.Error as err:
     """)
 
 
-if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-    print("Something is wrong with your user name or password")
-elif err.errno == errocode.ER_BAD_DB_ERROR:
-    print("Database does not exist")
-else:
-    print(err)
-print("<p>Fix your code or Contact the system admin</p></body></html>")
-quit()
+    if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+        print("Something is wrong with your user name or password")
+    elif err.errno == errorcode.ER_BAD_DB_ERROR:
+        print("Database does not exist")
+    else:
+        print(err)
+    print("<p>Fix your code or Contact the system admin</p></body></html>")
+    quit()
 
 cursor = cnx.cursor()
 
@@ -48,8 +48,11 @@ sendButton = params.getvalue("send")
 
 if sendButton:
     #need to insert code right how that stores the userName of the person accessing the messageboard as a variable
-    message = params.getvalue("message")
+    message = params.getvalue("sendmessage")
 
+
+    fields = cursor.fetchall()
+    user = fields[1]
     result = msg.addMsg(cursor, user, message)
 
     if result == 1:
@@ -60,7 +63,7 @@ if sendButton:
     else:
         print('Content-type: text/html')
         print()
-        print("""\
+        print("""
         <!DOCTYPE html>
         <html>
         <head>
@@ -92,18 +95,19 @@ if sendButton:
         quit()
 
 
-print("Content-Type: text/html\n")  #Python html code that displays the html page
-print('''\
+print("Content-type: text/html\n")  #Python html code that displays the html page
+print('''\n
 <!DOCTYPE html>
 <html lang="en">
    <head class = "index_head">
+   <meta charset="UTF-8">
      <link rel="stylesheet" href="styles.css">
       <title>Message Board</title>
-      <meta charset="UTF-8">
    </head>
    <body>
      <nav>
    <div class="Navigation_Bar">
+    <a href="index.html">Home Page</a>
     <a href="signup.html">Signup</a>
     <a href="login.html">Login</a>
     <a href="msgboard.html"> Message Board </a>
@@ -138,11 +142,7 @@ if 'HTTP_COOKIE' in os.environ: #checks to see if there is a cookie present in t
     </footer>
     </main>''')
 
-    cursor.close()
 
-    cnx.commit()
-
-    cnx.close()
 
     print('''
         </body>
@@ -152,3 +152,9 @@ if 'HTTP_COOKIE' in os.environ: #checks to see if there is a cookie present in t
 else:   # if the user's cookie has not been verified display an error message instead of the msg board
     print("<h3> You must be logged in first to access this page. Please try again.</h3></body></html>")
     exit(0)
+
+cursor.close()
+
+cnx.commit()
+
+cnx.close()
