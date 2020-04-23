@@ -1,99 +1,58 @@
 #!/usr/bin/python3
 #Project 01     Created: 4/16/2020   Due: 4/22/2020  logout.py
-#Created By: Celine Tannous
-
-import http import Cookies
-import mysql.connector
-import datetime
-import cgi, re
-import cgitb; cgitb.enable() #import python cgi for traceback
-from config import *
+#Created By: Celine Tannous & Modified By: Megan Reardon
+#This file is needed to delete a session by using a cookie which will therefore make a user logout of our website.
+#Deletes Cookie
 
 
-#form = cgi.FieldStorage()
-#username = form.getvalue('usrname')
-#error_msg= ""
-#cnx = mysql.connector.disconnect(user='m216618', database='m216618')
-#cursor = cnx.cursor()
+#!/usr/bin/env python3
 
-#def logout(cursor):
-#    error = 0
-#    query = "SELECT userName, Admin FROM USERS WHERE UserName = %s"
-#    cursor.execute(query,(username))
-#    try:
-#        cursor.execute(query)
-#    except mysql.connector.Error as err:
+#session3.py
+#this will delete a session if found which will make the user logout
+import hashlib, time, os, shelve
+from http import cookies
 
-#Displays Page To Be The Same As The Website
+import cgitb;
 
-#def sign_out():
-    session.pop('username')
-    return redirect(url_for('index'))
-    # from https://gist.github.com/daGrevis/2427189
-try:
-  '''cnx = mysql.connector.connect(user='theuser',
-                                password = 'thepassword',
-                                host = 'thehostserver',
-                                database='thedatabase')'''
-  cnx = mysql.connector.connect(user=config.USER,
-                                password = config.PASSWORD,
-                                host = config.HOST,
-                                database=config.DATABASE)
-except mysql.connector.Error as err:
-print("Content-Type: text/html\n")
-print()
-print('''\
-<!DOCTYPE html>
-<html lang="en">
-<head class = "index_head">
-    <link rel="shortcut icon" href="favicon.ico">
-    <link type="text/css" rel="stylesheet" href="style.css">
-    <title>Log Out</title>
-    <meta charset="UTF-8">
-   </head>
-   <body>
-     <nav>
-   <div class="Navigation_Bar">
-    <a href="index.html">Home Page</a>
-    <a href="signup.html">Signup</a>
-    <a href="login.html">Login</a>
-    <a href="msgboard.html"> Message Board</a>
-  </div>
-  </nav>
-  <h1 style='text-align:center;'>Log Out</h1>''')
-  #html to generate log out page
+cgitb.enable()
 
+cookie = cookies.SimpleCookie()
+string_cookie = os.environ.get('HTTP_COOKIE')
 
-  #Making This Page Look The Same As On Our Website
-  print('''\
-  <p style="text-align:center;"><img src="Logo2.png" width="200" alt="Logo" class="center"></p>
-  ''')
+issession = False
+sid=0
+if not string_cookie:
+   message = 'No cookie - no session to remove'
+else:
+   cookie.load(string_cookie)
+   if 'sid' in cookie:
+     sid = cookie['sid'].value
+     issession=True
+     message ="Found session - it will be deleted"
+   else:
+     message = 'No sid - no session to remove '
+#set the variables to delete the cookie - print(cookie) will generate the correct HTTP header to set the cookie in the browser
+cookie['sid'] = ''
+cookie['sid']['expires'] = -1
 
-print('''\
+# The shelve module will persist the session data
+# and expose it as a dictionary
+if issession:
+  sessionFile = '/tmp/sess_' + sid
+  session = shelve.open(sessionFile, writeback=True)
 
-  <!--TimeStamp-->
-     <footer>
-        <!-- ***************************************************************
-           Below this point is text you should include on every SY306 page
-           *************************************************************** -->
-        <script src="http://courses.cyber.usna.edu/SY306/docs/htmlvalidate.js" ></script>
-  </footer>
-  ''')
+  #clear session data
+  session.clear()
+  #remove session file
+  session.close()
+  os.remove(sessionFile)
 
-#if val<1:
-#    code=error_msg
-#    print (code+'\n<body></html>')
-#else:
-#    print ('\n</body></html>')
-
-  #close cursor since we don't use it anymore
-#  cursor.close()
-
-  #commit the transaction
-  cnx.commit()  #this is really important otherwise all changes lost
-
-  #close connection
-  cnx.close()
-
-  #End html Tags
-  print("</body></html>");
+#produce the output, note the first parameter in the string, which is the cookie - print before the content-type line
+print ("""\
+%s
+Content-Type: text/html\n
+<html><body onload='index.html'>
+<p>%s</p>
+<p>SID = %s</p>
+</body></html>
+""" % (cookie, message, sid))

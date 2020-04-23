@@ -176,7 +176,7 @@ if 'HTTP_COOKIE' in os.environ: #checks to see if there is a cookie present in t
     <input type = "submit" id="send" name="send" value="Send Message">
     </p>
     </form><br><br>
-    <a href="logout.py">Log Out</a>
+    <a href="index.html">Log Out</a>
 
     <footer>
         <script src="http://courses.cyber.usna.edu/SY306/docs/htmlvalidate.js"></script>

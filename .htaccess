@@ -1,0 +1,4 @@
+AuthUserFile /home/mids/m216618/public_html/messageBoard/.htpasswd
+AuthType Basic
+AuthName "messageBoard"
+Require valid-user
