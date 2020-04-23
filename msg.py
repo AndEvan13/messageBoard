@@ -16,7 +16,6 @@ class msg:
             print("<h3>Message field was not filled. Please enter a valid Message.</h3>")
             print('</body></html>')
 
-
         if user == None:
             return -1
         if Message == None:

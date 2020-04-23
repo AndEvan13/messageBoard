@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
-
+# created by MIDN Tannous & Modified by MIDN Hichue
 import cgi,cgitb    #import python cgi  for traceback
 from msg import msg
-import config
-import os
+import config, os, hashlib, time
 from http import cookies
-
 
 # cgitb.enable()
 
@@ -33,8 +31,6 @@ except mysql.connector.Error as err:
     <body>
     """)
 
-
-
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
         print("Something is wrong with your user name or password")
     elif err.errno == errorcode.ER_BAD_DB_ERROR:
@@ -46,58 +42,57 @@ except mysql.connector.Error as err:
 
 cursor = cnx.cursor()
 
-# cookie = cookies.SimpleCookie()
-# string_cookie = os.environ.get('HTTP_COOKIE')
-# sid=0
-# if not string_cookie:
-#   cookieMessage = 'No cookie - no session'
-# else:
-#    cookie.load(string_cookie)
-#    if 'sid' in cookie:
-#      sid = cookie['sid'].value
+cookie = cookies.SimpleCookie()
+string_cookie = os.environ.get('HTTP_COOKIE')
+# if 'HTTP_COOKIE' in os.environ:
+#   print ("<h3>The following cookie(s) found:</h3>");
+#   print (os.environ["HTTP_COOKIE"]);
+sid=0
+if not string_cookie:
+  cookieMessage = 'No cookie - no session'
+else:
+    cookie.load(string_cookie)
+    if 'sid' in cookie:
+        sid = cookie['sid'].value
 
+#Initiates the form
 form = cgi.FieldStorage()
 sendButton = form.getvalue("send")
+# Queries what information to get from the database
+query = "SELECT UserName, Password, Admin FROM Users WHERE SessionID = (%s);"
 
-#
-# query = "SELECT UserName, Password, Admin FROM Users WHERE SessionID = (%s);"
-# data=(str(sid),)
-# cursor.execute(query,data)
-# paul=cursor.fetchall()
-#
-# if paul!=[]:
-#     for things in paul:
-#         if things!=None and things!="":
-#             username=things[0]
-#             pwd=things[1]
-#             admin=things[2]
-#
-#
-#
-# else:
-#     error_msg='''Content-Type: text/html\n
-#     <!DOCTYPE html>
-#     <html>
-#     <head>
-#     <meta charset = "utf-8">
-#     <link type="text/css" rel="stylesheet" href="styles.css">
-#     <title>Login Check</title>
-#     </head>
-#     <body>
-#     <h1>There has been an Error:</h1>
-#     <p>please go back and try again</p>
-#     </body></html>
-#     '''
-#     print(error_msg)
-#     quit()
-
-
-
+cursor.execute(query,(sid,))
+paul=cursor.fetchall()
+#Collects the data needed from the session database and loads them as variable
+if paul!=[]:
+    for things in paul:
+        if things!=None and things!="":
+            userName=things[0]
+            pwd=things[1]
+            admin=things[2]
+# If there is no data set
+else:
+    error_msg='''Content-Type: text/html\n
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset = "utf-8">
+    <link type="text/css" rel="stylesheet" href="styles.css">
+    <title>Login Check</title>
+    </head>
+    <body>
+    <h1>There has been an Error:</h1>
+    <p>please go back and try again</p>
+    </body></html>
+    '''
+    print(error_msg)
+    quit()
+# If the user clicks the senndMessage button
 if sendButton:
 
     message = form.getvalue("textarea")
-
-    result = msg.addMsg(cursor, "userName", message)
+    #Calls addMsg and populates the message board
+    result = msg.addMsg(cursor, userName, message)
 
     if result == 1:
         print('Status: 303 See Other')
@@ -121,7 +116,7 @@ if sendButton:
         <body>
         """)
         print('<h2>Could not send message</h2>')
-
+        # Error statements that could occur if invalid input is inserted
         if result == 0:
             print('<p>Sorry, something unexpected happened when we tried to send your message. You will be redirected to the message board shortly.</p>')
         elif result == -1:
@@ -164,14 +159,14 @@ print('''\
 # if 'HTTP_COOKIE' in os.environ: #checks to see if there is a cookie present in the environment
 print('''<main>
 <form name='mboard' method="post" action="msgboard.py">''')
-
+# Adds the message to the board
 table = msg.printMessage(cursor)
 
 if table:
     print(table)
 else:
     print("<h2>No Messages Present</h2>")
-
+# Adds the token identifier
 token=hashlib.sha256(repr(time.time()).encode()).hexdigest()
 print('''\
 <p>
@@ -195,72 +190,3 @@ cnx.commit()
 cnx.close()
 
 print("</body></html>")
-
-
-
-#
-# print("Content-type: text/html\n")  #Python html code that displays the html page
-# print('''\n
-# <!DOCTYPE html>
-# <html lang="en">
-#    <head class = "index_head">
-#    <meta charset="UTF-8">
-#      <link rel="stylesheet" href="styles.css">
-#       <title>Message Board</title>
-#    </head>
-#    <body>
-#      <nav>
-#    <div class="Navigation_Bar">
-#     <a href="index.html">Home Page</a>
-#     <a href="signup.html">Signup</a>
-#     <a href="login.html">Login</a>
-#     <a href="msgboard.py"> Message Board </a>
-#   </div>
-#   </nav>
-#  <h1>Message board</h1>
-# ''')    #html that displays the navigation bar and the title of the message board
-#
-#
-# if 'HTTP_COOKIE' in os.environ: #checks to see if there is a cookie present in the environment
-#     print('''<main>
-#     <form name='mboard' method="post" action="http://midn.cyber.usna.edu/~m216618/messageBoard/msgboard.py">''')
-#
-#     table = msg.printMessage(cursor)
-#
-#     if table:
-#         print(table)
-#     else:
-#         print("<h2>No Messages Present</h2>")
-#
-#     token=hashlib.sha256(repr(time.time()).encode()).hexdigest()
-#     print('''\
-#     <p>
-#     <label>Message:</label>
-#     <textarea id="textarea" name="textarea" rows="4" cols="50" style="background-color: #bcf5e7;color: black;" placeholder="Message goes here..."></textarea><br>
-#     <input type = "submit" id="send" name="send" value="Send Message">
-#     </p>
-#     </form><br><br>
-#     <a href="index.html">Log Out</a>
-#     <input type="hidden" id="token" name="token" value=token>
-#
-#     <footer>
-#         <script src="http://courses.cyber.usna.edu/SY306/docs/htmlvalidate.js"></script>
-#     </footer>
-#     </main>''')
-#
-#
-#
-#     print('''
-#         </body>
-#     </html>
-#     ''')   #displays the msgboard if the user's cookie has been verified
-#
-# else:   # if the user's cookie has not been verified display an error message instead of the msg board
-#     print("<h3> You must be logged in first to access this page. Please try again.</h3></body></html>")
-#     exit(0)
-#
-# cursor.close()
-#
-# cnx.commit()
-#
-# cnx.close()

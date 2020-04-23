@@ -107,7 +107,7 @@ if username!=None and password!=None:
         #
         if not string_cookie:
            #create the 'sid' cookie if no cookies exist
-           sid = hashlib.sha256(repr(time.time()).encode()).hexdigest()
+           sid = str(hashlib.sha256(repr(time.time()).encode()).hexdigest())
            cookie['sid'] = sid
            message = 'New session'
         else:
@@ -155,7 +155,6 @@ if username!=None and password!=None:
               # quit()
 else:
     val=-1
-
 
 error_msg='''Content-Type: text/html\n
 <!DOCTYPE html>

@@ -109,7 +109,6 @@ if (password != password2):
     print("<p> Passwords do not match!</p>")
     x = 1
 
-
 #Hashing the password
 hashPass1 = hashlib.sha256(password.encode())
 hashPass = str(hashPass1.hexdigest())
@@ -124,14 +123,14 @@ try:
     cursor.execute(query,(name,username,hashPass,admin,sessionID,token))
 except mysql.connector.IntegrityError as err:
     print("<h1> Sorry that username is already taken! Please try another!")
-    print("<a href='http://midn.cyber.usna.edu/~m212748/Project1/messageBoard/signup.html'>")
+    print("<a href='signup.html'>")
     print("<br> Sign-Up! </a>")
     x = 1
 
 if (x == 0):
     print("<h2> Thank you",name,"for signing up for Let's talk about it!<br><br>")
     print("<h2> Please click the link below to log-in and begin messaging!")
-    print("<a href='http://midn.cyber.usna.edu/~m212748/Project1/messageBoard/login.html'>")
+    print("<a href='login.html'>")
     print("<br> Log-In!</a>")
 
 print ('</body></html>')
