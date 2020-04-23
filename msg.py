@@ -9,11 +9,17 @@ class msg:
     def addMsg(cursor, user, Message):
         #Sanity checks of the Message
         if Message == None:
-            print("<h3 style = 'color:red'> Message field was not filled. Please enter a valid Message.</h3>")
+            print('Content-type: text/html')
+            print()
+            print('<!DOCTYPE html><html><head><meta charset="utf-8"><title>SQL Error</title></head>')
+            print('<body>')
+            print("<h3>Message field was not filled. Please enter a valid Message.</h3>")
+            print('</body></html>')
+
 
         if user == None:
             return -1
-        if title == None:
+        if Message == None:
             return -2
 
         query = "Insert into Messages(userName, Message) values ('" + user +"','" + Message + "')"
@@ -25,7 +31,7 @@ class msg:
             print()
             print('<!DOCTYPE html><html><head><meta charset="utf-8"><title>SQL Error</title></head>')
             print('<body>')
-            print('<p style = "color:red">')
+            print('<p style = "color:red;">')
             print(err)
             print('</p>')
             print('</body></html>')
@@ -39,6 +45,7 @@ class msg:
             else:
                 return 0
 
+
     def printMessage(cursor):
         query = "SELECT MessageID, userName, Message FROM Messages"
         try:
@@ -51,7 +58,7 @@ class msg:
 
         nbRows = 0
 
-        table = "<table><tr><th>User</th><th>User</th><th>Message</th></tr>\n"
+        table = "<table><tr><th>MessageID</th><th>User</th><th>Message</th></tr>\n"
         for (MessageID, user, Message) in cursor:
             table += "<tr><td>" + str(MessageID) + "</td><td>" + user + "</td><td>" + Message + "</td></tr>\n"
             nbRows += 1
