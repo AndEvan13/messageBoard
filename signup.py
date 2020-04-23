@@ -112,7 +112,7 @@ if (password != password2):
 
 #Hashing the password
 hashPass1 = hashlib.sha256(password.encode())
-hashPass = str(hashPass1)
+hashPass = str(hashPass1.hexdigest())
 #Columns not set at login
 admin = "0"
 sessionID = "empty"
