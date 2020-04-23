@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 #Project 01     Created: 4/16/2020   Due: 4/22/2020  logout.py
-#Created By: Celine Tannous
+#Created By: Celine Tannous & Modified By: Megan Reardon
+#This file is needed to delete a session by using a cookie which will therefore make a user logout of our website.
 #Deletes Cookie
 
-i#!/usr/bin/env python3
+
+#!/usr/bin/env python3
 
 #session3.py
-#this will delete a session if found
+#this will delete a session if found which will make the user logout
 import hashlib, time, os, shelve
 from http import cookies
 
