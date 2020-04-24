@@ -28,7 +28,7 @@ else:
    if 'sid' in cookie:
      sid = cookie['sid'].value
      issession=True
-     message ="Found session - it will be deleted"
+     message ="Thank you for visiting"
    else:
      message = 'No sid - no session to remove '
 #set the variables to delete the cookie - print(cookie) will generate the correct HTTP header to set the cookie in the browser
@@ -51,8 +51,16 @@ if issession:
 print ("""\
 %s
 Content-Type: text/html\n
-<html><body onload='index.html'>
+<html>
+<head>
+    <title>Logged Out</title>
+    <meta http-equiv = "refresh" content = "1; url = index.html" />
+    <link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Logout Page</h1>
 <p>%s</p>
+<p>You will be redirected to the main page</p>
 <p>SID = %s</p>
 </body></html>
 """ % (cookie, message, sid))

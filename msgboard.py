@@ -40,6 +40,7 @@ except mysql.connector.Error as err:
     print("<p>Fix your code or Contact the system admin</p></body></html>")
     quit()
 
+token=hashlib.sha256(repr(time.time()).encode()).hexdigest()
 cursor = cnx.cursor()
 
 cookie = cookies.SimpleCookie()
@@ -58,8 +59,9 @@ else:
 #Initiates the form
 form = cgi.FieldStorage()
 sendButton = form.getvalue("send")
+token_val=form.getvalue("token")
 # Queries what information to get from the database
-query = "SELECT UserName, Password, Admin FROM Users WHERE SessionID = (%s);"
+query = "SELECT UserName, Password, Admin, Token FROM Users WHERE SessionID = (%s);"
 
 cursor.execute(query,(sid,))
 paul=cursor.fetchall()
@@ -70,7 +72,10 @@ if paul!=[]:
             userName=things[0]
             pwd=things[1]
             admin=things[2]
-# If there is no data set
+            token_query_return=things[3]
+
+
+    # If there is no data set
 else:
     error_msg='''Content-Type: text/html\n
     <!DOCTYPE html>
@@ -135,7 +140,7 @@ if sendButton:
 
 print("Content-type: text/html")  #Python html code that displays the html page
 print()
-print('''\
+p_statement='''\
 <!DOCTYPE html>
 <html lang="en">
    <head class = "index_head">
@@ -152,31 +157,38 @@ print('''\
     <a href="msgboard.py"> Message Board </a>
   </div>
   </nav>
+  <script> console.log({token_val});
+  console.log({token_query_return});</script>
  <h1>Message board</h1>
-''')    #html that displays the navigation bar and the title of the message board
+'''
+p_statement.format(token_val=token_val,token_query_return=token_query_return)
+print(p_statement)    #html that displays the navigation bar and the title of the message board
 
 
 # if 'HTTP_COOKIE' in os.environ: #checks to see if there is a cookie present in the environment
-print('''<main>
-<form name='mboard' method="post" action="msgboard.py">''')
 # Adds the message to the board
 table = msg.printMessage(cursor)
-
 if table:
     print(table)
 else:
     print("<h2>No Messages Present</h2>")
 # Adds the token identifier
-token=hashlib.sha256(repr(time.time()).encode()).hexdigest()
+# token=hashlib.sha256(repr(time.time()).encode()).hexdigest()
+query = "UPDATE Users SET Token= (%s) WHERE SessionID = (%s);"
+cursor.execute(query,(token,sid))
+# print('''
+# <form name='mboard' method="post" action="msgboard.py">''')
 print('''\
+<main>
 <p>
 <label>Message:</label>
+<form name='mboard' method="post" action="msgboard.py">
 <textarea id="textarea" name="textarea" rows="4" cols="50" style="background-color: #bcf5e7;color: black;" placeholder="Message goes here..."></textarea><br>
 <input type = "submit" id="send" name="send" value="Send Message">
 <input type="hidden" id="token" name="token" value=token>
 </p>
 </form><br><br>
-<a href="index.html">Log Out</a>
+<a href="logout.py">Log Out</a>
 
 <footer>
     <script src="http://courses.cyber.usna.edu/SY306/docs/htmlvalidate.js"></script>
